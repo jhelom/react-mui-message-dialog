@@ -15,10 +15,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: "pnpm"
+          cache: 'pnpm'
       - name: Install pnpm
         run: npm install -g pnpm
       - name: Install dependencies
         run: pnpm install
-      - name: Build package
-        run: pnpm --filter @jhelom/react-mui-message-dialog build
+      - name: Build all packages
+        run: pnpm build
