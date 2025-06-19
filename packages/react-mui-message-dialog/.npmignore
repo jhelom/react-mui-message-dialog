@@ -1,0 +1,8 @@
+# Exclude source and config files from npm package
+src/
+stories/
+tsconfig.json
+vite.config.ts
+*.log
+node_modules/
+# Include only dist and package.json (files field in package.json is also respected)

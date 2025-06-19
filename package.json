@@ -9,7 +9,8 @@
     "dev": "pnpm --filter playground dev",
     "storybook": "pnpm --filter @jhelom/react-mui-message-dialog storybook",
     "build": "pnpm -r run build",
-    "preinstall": "node -e \"if(process.env.npm_execpath && !process.env.npm_execpath.includes('pnpm')){console.error('Please use pnpm for this project. npm or yarn is not allowed.');process.exit(1)}\""
+    "preinstall": "node -e \"if(process.env.npm_execpath && !process.env.npm_execpath.includes('pnpm')){console.error('Please use pnpm for this project. npm or yarn is not allowed.');process.exit(1)}\"",
+    "publish:react-mui-message-dialog": "cd packages/react-mui-message-dialog && npm version patch && pnpm build && pnpm publish --access public"
   },
   "devDependencies": {
     "@storybook/react-vite": "^8.6.14",
