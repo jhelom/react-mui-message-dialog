@@ -31,7 +31,7 @@ jobs:
       - name: Build package
         run: pnpm build
       - name: Bump patch version
-        run: npm version patch
+        run: pnpm version patch
       - name: Publish to npm
         run: pnpm publish --access public
         env:
