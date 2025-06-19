@@ -1,7 +1,7 @@
 {
   "name": "@jhelom/react-mui-message-dialog",
   "version": "1.0.1",
-  "main": "dist/index.js",
+  "main": "dist/index.es.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -34,5 +34,10 @@
     "url": "https://github.com/jhelom/react-mui-message-dialog/issues"
   },
   "homepage": "https://github.com/jhelom/react-mui-message-dialog#readme",
-  "author": "jhelom"
+  "author": "jhelom",
+  "keywords": [
+    "react",
+    "mui",
+    "dialog"
+  ]
 }
