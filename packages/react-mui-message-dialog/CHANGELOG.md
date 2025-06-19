@@ -1,5 +1,11 @@
 # @jhelom/react-mui-message-dialog
 
+## 1.0.3
+
+### Patch Changes
+
+- 104d45c: Fix: Ensure dist directory is built and included in npm package during release workflow.
+
 ## 1.0.2
 
 ### Patch Changes
