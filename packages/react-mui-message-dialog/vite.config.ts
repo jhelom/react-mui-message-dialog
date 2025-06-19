@@ -10,6 +10,7 @@ export default defineConfig({
             entry: path.resolve(__dirname, 'src/index.tsx'),
             name: 'UiLib1',
             fileName: (format) => `index.${format}.js`,
+            formats: ['es', 'cjs', 'umd'],
         },
         rollupOptions: {
             external: ['react', 'react-dom', '@mui/material'],
