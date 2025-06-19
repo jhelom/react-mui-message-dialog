@@ -39,5 +39,6 @@
     "react",
     "mui",
     "dialog"
-  ]
+  ],
+  "license": "MIT"
 }
