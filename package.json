@@ -13,6 +13,7 @@
     "publish:react-mui-message-dialog": "cd packages/react-mui-message-dialog && npm version patch && pnpm build && pnpm publish --access public"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.4",
     "@storybook/react-vite": "^8.6.14",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
