@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useMessageDialog} from '@jhelom/react-message-dialog';
+import {useMessageDialog} from '@jhelom/react-mui-message-dialog';
 import {Button, Stack, Typography} from '@mui/material';
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
 
     return <>
         <Typography variant="h5" sx={{mb: 4}}>
-            Message Dialog Playground
+            React MUI Message Dialog
         </Typography>
         <Stack spacing={2} direction="row">
             <Button onClick={handleClickAlert} variant="contained">Alert</Button>

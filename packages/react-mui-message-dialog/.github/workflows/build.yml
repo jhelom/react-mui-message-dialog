@@ -21,4 +21,4 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Build package
-        run: pnpm --filter @jhelom/react-message-dialog build
+        run: pnpm --filter @jhelom/react-mui-message-dialog build

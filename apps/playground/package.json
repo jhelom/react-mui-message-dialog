@@ -8,8 +8,7 @@
   "dependencies": {
     "react": ">=18",
     "react-dom": ">=18",
-    "@jhelom/react-message-dialog": "workspace:*",
-    "@your-scope/ui-lib-2": "workspace:*"
+    "@jhelom/react-mui-message-dialog": "workspace:*"
   },
   "devDependencies": {
     "vite": "^5.0.0",

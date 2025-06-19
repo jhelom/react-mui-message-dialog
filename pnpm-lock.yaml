@@ -42,12 +42,9 @@ importers:
 
   apps/playground:
     dependencies:
-      '@jhelom/react-message-dialog':
+      '@jhelom/react-mui-message-dialog':
         specifier: workspace:*
-        version: link:../../packages/react-message-dialog
-      '@your-scope/ui-lib-2':
-        specifier: workspace:*
-        version: link:../../packages/ui-lib-2
+        version: link:../../packages/react-mui-message-dialog
       react:
         specifier: '>=18'
         version: 19.1.0
@@ -62,35 +59,7 @@ importers:
         specifier: ^5.0.0
         version: 5.4.19
 
-  packages/react-message-dialog:
-    dependencies:
-      '@mui/material':
-        specifier: '>=5'
-        version: 7.1.1(@emotion/react@11.14.0(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      react:
-        specifier: '>=18'
-        version: 19.1.0
-    devDependencies:
-      '@storybook/react-vite':
-        specifier: ^8.0.0
-        version: 8.6.14(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(rollup@4.43.0)(storybook@8.6.14)(typescript@5.8.3)(vite@5.4.19)
-      '@vitejs/plugin-react':
-        specifier: ^4.5.2
-        version: 4.5.2(vite@5.4.19)
-      typescript:
-        specifier: ^5.0.0
-        version: 5.8.3
-      vite:
-        specifier: ^5.0.0
-        version: 5.4.19
-      vite-plugin-dts:
-        specifier: ^4.5.4
-        version: 4.5.4(rollup@4.43.0)(typescript@5.8.3)(vite@5.4.19)
-      vitest:
-        specifier: ^1.0.0
-        version: 1.6.1
-
-  packages/ui-lib-2:
+  packages/react-mui-message-dialog:
     dependencies:
       '@mui/material':
         specifier: '>=5'

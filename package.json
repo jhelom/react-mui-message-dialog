@@ -1,5 +1,5 @@
 {
-  "name": "jhelom-monorepo-root",
+  "name": "@jhelom/react-mui",
   "private": true,
   "workspaces": [
     "packages/*",
@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "dev": "pnpm --filter playground dev",
-    "storybook": "pnpm --filter @jhelom/message-dialog storybook",
+    "storybook": "pnpm --filter @jhelom/react-mui-message-dialog storybook",
     "build": "pnpm -r run build",
     "preinstall": "node -e \"if(process.env.npm_execpath && !process.env.npm_execpath.includes('pnpm')){console.error('Please use pnpm for this project. npm or yarn is not allowed.');process.exit(1)}\""
   },
