@@ -1,0 +1,9 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "never"
+  },
+"editor.formatOnSave": true,
+"cSpell.words": [
+    "jhelom"
+]
+}

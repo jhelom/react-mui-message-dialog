@@ -1,21 +1,35 @@
-import {Button, Dialog, DialogActions, DialogContent, SxProps, Theme} from '@mui/material';
-import {ReactNode, useCallback, useEffect, useMemo, useState} from 'react';
+import { Button, Dialog, DialogActions, DialogContent, SxProps, Theme } from '@mui/material';
+import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 
-import {MessageDialogContext, MessageDialogOptions} from './MessageDialogContext';
 import DialogTitleEx from './DialogTitleEx';
+import { MessageDialogContext, MessageDialogOptions } from './MessageDialogContext';
 
-const MessageDialogResource = {
+export interface MessageDialogSettings {
+    okText?: string;
+    cancelText?: string;
+    alertTitle?: string;
+    confirmTitle?: string;
+    errorTitle?: string;
+}
+
+const defaultMessageDialogSettings = {
     okText: 'OK',
     cancelText: 'Cancel',
-    defaultTitle: 'Alert',
+    alertTitle: 'Alert',
+    confirmTitle: 'Confirm',
     errorTitle: 'Error',
-};
+} as MessageDialogSettings;
 
-export const MessageDialogProvider = (
-    props: {
-        children: ReactNode,
-    }
-) => {
+export interface MessageDialogProviderProps {
+    children: ReactNode,
+    settings?: MessageDialogSettings;
+}
+
+export const MessageDialogProvider = (props: MessageDialogProviderProps) =>{
+    const settings: MessageDialogSettings = {
+        ...defaultMessageDialogSettings,
+        ...(props.settings || {})
+    };
     const defaultSx = useMemo<SxProps<Theme>>(() => ({
         backgroundColor: theme => theme.palette.primary.main,
         color: '#fff'
@@ -25,9 +39,9 @@ export const MessageDialogProvider = (
     const [resolvePromise, setResolvePromise] = useState<((result: boolean) => void) | null>(null);
     const [showCancelButton, setShowCancelButton] = useState<boolean>(false);
     const [sx, setSx] = useState<SxProps<Theme>>(defaultSx);
-    const [title, setTitle] = useState<string>(MessageDialogResource.defaultTitle);
-    const [okText, setOkText] = useState<string>(MessageDialogResource.okText);
-    const [cancelText, setCancelText] = useState<string>(MessageDialogResource.cancelText);
+    const [title, setTitle] = useState<string>(settings.alertTitle!);
+    const [okText, setOkText] = useState<string>(settings.okText!);
+    const [cancelText, setCancelText] = useState<string>(settings.cancelText!);
 
     const show = (message?: string): Promise<boolean> => {
         setMessage(message || '');
@@ -38,37 +52,32 @@ export const MessageDialogProvider = (
     };
 
     const confirm = useCallback((message?: string, options?: MessageDialogOptions): Promise<boolean> => {
-        setTitle(MessageDialogResource.defaultTitle);
-
-        if (options?.okText) {
-            setOkText(options.okText);
-        }
-
-        if (options?.cancelText) {
-            setCancelText(options.cancelText);
-        }
-
+        setTitle(settings.confirmTitle!);
+        setOkText(options?.okText || settings.okText!);
+        setCancelText(options?.cancelText || settings.cancelText!);
         setShowCancelButton(true);
         setSx(defaultSx);
         return show(message);
-    }, [defaultSx]);
+    }, [defaultSx, settings]);
 
     const alert = useCallback((message?: string): Promise<boolean> => {
-        setTitle(MessageDialogResource.defaultTitle);
+        setTitle(settings.alertTitle!);
+        setOkText(settings.okText!);
         setShowCancelButton(false);
         setSx(defaultSx);
         return show(message);
-    }, [defaultSx]);
+    }, [defaultSx, settings]);
 
     const error = useCallback((message?: string): Promise<boolean> => {
-        setTitle(MessageDialogResource.errorTitle);
+        setTitle(settings.errorTitle!);
+        setOkText(settings.okText!);
         setShowCancelButton(false);
         setSx({
             backgroundColor: theme => theme.palette.error.main,
             color: '#fff'
         });
         return show(message);
-    }, []);
+    }, [settings]);
 
     const handleClose = (result: boolean): void => {
         setOpen(false);
