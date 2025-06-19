@@ -21,7 +21,10 @@ jobs:
           registry-url: "https://registry.npmjs.org/"
           cache: "pnpm"
       - name: Install pnpm
-        run: corepack enable && corepack prepare pnpm@latest --activate
+        run: |
+          cd ../..
+          corepack enable && corepack prepare pnpm@latest --activate
+          cd packages/react-mui-message-dialog
       - name: Install dependencies
         run: pnpm install
       - name: Build package
