@@ -22,9 +22,8 @@ jobs:
           cache: "pnpm"
       - name: Install pnpm
         run: |
-          cd ../..
-          corepack enable && corepack prepare pnpm@latest --activate
-          cd packages/react-mui-message-dialog
+          corepack enable
+          corepack prepare pnpm@latest --activate
       - name: Install dependencies
         run: pnpm install
       - name: Build package
