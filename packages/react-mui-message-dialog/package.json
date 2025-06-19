@@ -24,5 +24,14 @@
     "vite": "^5.0.0",
     "vite-plugin-dts": "^4.5.4",
     "vitest": "^1.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jhelom/react-mui-message-dialog.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jhelom/react-mui-message-dialog/issues"
+  },
+  "homepage": "https://github.com/jhelom/react-mui-message-dialog#readme",
+  "author": "jhelom"
 }
