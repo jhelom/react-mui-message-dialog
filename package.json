@@ -1,5 +1,5 @@
 {
-  "name": "your-monorepo-root",
+  "name": "jhelom-monorepo-root",
   "private": true,
   "workspaces": [
     "packages/*",
