@@ -1,0 +1,28 @@
+{
+  "name": "your-monorepo-root",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "pnpm --filter playground dev",
+    "storybook": "pnpm --filter @jhelom/message-dialog storybook",
+    "build": "pnpm -r run build",
+    "preinstall": "node -e \"if(process.env.npm_execpath && !process.env.npm_execpath.includes('pnpm')){console.error('Please use pnpm for this project. npm or yarn is not allowed.');process.exit(1)}\""
+  },
+  "devDependencies": {
+    "@storybook/react-vite": "^8.0.0",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "typescript": "^5.0.0",
+    "vite": "^5.0.0",
+    "vitest": "^1.0.0"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^7.1.1",
+    "@mui/material": "^7.1.1"
+  }
+}
