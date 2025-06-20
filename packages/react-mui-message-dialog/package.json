@@ -38,6 +38,10 @@
   "keywords": [
     "react",
     "mui",
-    "dialog"
-  ]
+    "dialog",
+    "typescript",
+    "promise",
+    "message"
+  ],
+  "license": "MIT"
 }
