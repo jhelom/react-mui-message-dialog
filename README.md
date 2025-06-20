@@ -22,7 +22,10 @@ npm i @jhelom/react-mui-message-dialog
 Wrap your application with `MessageDialogProvider` to enable global message dialog functionality. This provider manages the dialog state and allows you to use the `useMessageDialog` hook anywhere in your component tree.
 
 ```tsx
-import { MessageDialogProvider } from "@jhelom/react-mui-message-dialog";
+import {
+  MessageDialogProvider,
+  MessageDialogSettings,
+} from "@jhelom/react-mui-message-dialog";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -66,3 +69,28 @@ await messageDialog.error("Error Message");
 ## Error
 
 ![](docs/attached/error.jpg)
+
+# Localize Text
+
+You can localize the dialog texts (button labels and titles) by passing a `MessageDialogSettings` object to the `settings` prop of `MessageDialogProvider`. Set each property to the desired language string to customize the dialog UI for your users.
+
+```tsx
+import { MessageDialogProvider } from "@jhelom/react-mui-message-dialog";
+import { MessageDialogSettings } from "@jhelom/react-mui-message-dialog/dist/MessageDialog";
+
+const messageDialogSettings = {
+  okText: "OK",
+  cancelText: "Cancel",
+  alertTitle: "Alert",
+  confirmTitle: "Confirm",
+  errorTitle: "Error",
+} as MessageDialogSettings;
+
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <MessageDialogProvider settings={messageDialogSettings}>
+      <App />
+    </MessageDialogProvider>
+  </StrictMode>
+);
+```

@@ -66,3 +66,30 @@ await messageDialog.error("Error Message");
 ## Error
 
 ![](docs/attached/error.jpg)
+
+# Localize Text
+
+You can localize the dialog texts (button labels and titles) by passing a `MessageDialogSettings` object to the `settings` prop of `MessageDialogProvider`. Set each property to the desired language string to customize the dialog UI for your users.
+
+```tsx
+import {
+  MessageDialogProvider,
+  MessageDialogSettings,
+} from "@jhelom/react-mui-message-dialog";
+
+const messageDialogSettings = {
+  okText: "OK",
+  cancelText: "Cancel",
+  alertTitle: "Alert",
+  confirmTitle: "Confirm",
+  errorTitle: "Error",
+} as MessageDialogSettings;
+
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <MessageDialogProvider settings={messageDialogSettings}>
+      <App />
+    </MessageDialogProvider>
+  </StrictMode>
+);
+```
