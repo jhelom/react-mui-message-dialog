@@ -1,5 +1,11 @@
 # @jhelom/react-mui-message-dialog
 
+## 1.0.5
+
+### Patch Changes
+
+- 6bacc48: Fix: export MessageDialogSettings as a type from index.tsx to resolve build error.
+
 ## 1.0.4
 
 ### Patch Changes
