@@ -1,5 +1,11 @@
 # @jhelom/react-mui-message-dialog
 
+## 1.0.4
+
+### Patch Changes
+
+- ee62c36: Add license field (MIT) to package.json.
+
 ## 1.0.3
 
 ### Patch Changes
