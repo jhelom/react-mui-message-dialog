@@ -1,5 +1,11 @@
 # @jhelom/react-mui-message-dialog
 
+## 1.0.7
+
+### Patch Changes
+
+- 8e30389: fix: add autoFocus property to the OK button in MessageDialogProvider
+
 ## 1.0.6
 
 ### Patch Changes
