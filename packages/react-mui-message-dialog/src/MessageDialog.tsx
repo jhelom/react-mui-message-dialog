@@ -25,7 +25,7 @@ export interface MessageDialogProviderProps {
     settings?: MessageDialogSettings;
 }
 
-export const MessageDialogProvider = (props: MessageDialogProviderProps) =>{
+export const MessageDialogProvider = (props: MessageDialogProviderProps) => {
     const settings: MessageDialogSettings = {
         ...defaultMessageDialogSettings,
         ...(props.settings || {})
@@ -149,6 +149,7 @@ export const MessageDialogProvider = (props: MessageDialogProviderProps) =>{
                                 data-testid="message-dialog-ok-button"
                                 onClick={() => handleClose(true)}
                                 sx={sx}
+                                autoFocus={true}
                             >{okText}</Button>
                         </div>
                         {showCancelButton && (
