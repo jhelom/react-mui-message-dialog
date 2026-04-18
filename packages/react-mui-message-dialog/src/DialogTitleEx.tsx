@@ -6,8 +6,6 @@ export type DialogTitleExProps = {
     title: string;
     onClose?: () => void;
     sx?: SxProps<Theme>;
-    closeButtonAriaLabel?: string;
-    height?: number;
 };
 
 export default function DialogTitleEx(props: DialogTitleExProps) {
@@ -15,30 +13,34 @@ export default function DialogTitleEx(props: DialogTitleExProps) {
         props.onClose?.();
     };
 
-    const sx = {
-        backgroundColor: (theme: Theme) => theme.palette.primary.main,
-        color: '#fff',
-        position: 'relative',
-        paddingRight: 7,
-        height: props.height ?? 40,
-        display: 'flex',
-        alignItems: 'center',
-        boxSizing: 'border-box',
-        ...(props.sx || {}),
-    } as SxProps<Theme>;
+    const sx = props.sx ||
+        {
+            backgroundColor: theme => theme.palette.primary.main,
+            color: '#fff'
+        };
 
-    return <DialogTitle data-testid="dialog-title" sx={sx}>
-        {props.title}
-        <IconButton aria-label={props.closeButtonAriaLabel ?? 'Close dialog'}
-                    onClick={() => handleClose()}
-                    sx={{
-                        position: 'absolute',
-                        right: 8,
-                        top: '50%',
-                        transform: 'translateY(-50%)',
-                        color: '#fff',
-                    }}>
-            <CloseIcon/>
-        </IconButton>
-    </DialogTitle>;
+    const baseTitleSx: SxProps<Theme> = {
+        position: 'relative',
+        pr: 6,
+    };
+
+    const titleSx: SxProps<Theme> = Array.isArray(sx)
+        ? [baseTitleSx, ...sx]
+        : [baseTitleSx, sx];
+
+    return <>
+        <DialogTitle data-testid="dialog-title" sx={titleSx}>
+            {props.title}
+            <IconButton onClick={handleClose}
+                        sx={{
+                            position: 'absolute',
+                            right: 8,
+                            top: '50%',
+                            transform: 'translateY(-50%)',
+                            color: '#fff',
+                        }}>
+                <CloseIcon/>
+            </IconButton>
+        </DialogTitle>
+    </>;
 }
