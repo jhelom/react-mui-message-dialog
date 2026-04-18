@@ -136,7 +136,6 @@ export const MessageDialogProvider = (props: MessageDialogProviderProps) => {
                         onClose={() => handleClose(false)}
                         height={settings.titleHeight}
                         sx={sx}
-                        closeButtonAriaLabel={settings.closeButtonAriaLabel}
                     />
                     <DialogContent
                         dividers
