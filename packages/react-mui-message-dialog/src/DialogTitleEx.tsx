@@ -6,7 +6,6 @@ export type DialogTitleExProps = {
     title: string;
     onClose?: () => void;
     sx?: SxProps<Theme>;
-    height?: number;
 };
 
 export default function DialogTitleEx(props: DialogTitleExProps) {
@@ -20,29 +19,18 @@ export default function DialogTitleEx(props: DialogTitleExProps) {
             color: '#fff'
         };
 
-    const baseTitleSx: SxProps<Theme> = {
-        position: 'relative',
-        pr: 6,
-        ...(props.height !== undefined ? {height: props.height} : {}),
-    };
-
-    const titleSx: SxProps<Theme> = Array.isArray(sx)
-        ? [baseTitleSx, ...sx]
-        : [baseTitleSx, sx];
-
     return <>
-        <DialogTitle data-testid="dialog-title" sx={titleSx}>
+        <DialogTitle data-testid="dialog-title" sx={sx}>
             {props.title}
-            <IconButton onClick={handleClose}
-                        sx={{
-                            position: 'absolute',
-                            right: 8,
-                            top: '50%',
-                            transform: 'translateY(-50%)',
-                            color: '#fff',
-                        }}>
-                <CloseIcon/>
-            </IconButton>
         </DialogTitle>
+        <IconButton onClick={() => handleClose()}
+                    sx={{
+                        position: 'absolute',
+                        right: 8,
+                        top: 12,
+                        color: '#fff',
+                    }}>
+            <CloseIcon/>
+        </IconButton>
     </>;
 }
