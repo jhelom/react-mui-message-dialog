@@ -26,7 +26,6 @@ export function DialogTitleEx(props: DialogTitleExProps) {
                 left: "2em",
                 top: '50%',
                 transform: 'translateY(-50%)',
-                color: '#fff',
             }}>{props.title}</Box>
             <IconButton onClick={() => handleClose()}
                         sx={{
