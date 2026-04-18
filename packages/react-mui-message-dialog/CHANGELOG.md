@@ -1,5 +1,11 @@
 # @jhelom/react-mui-message-dialog
 
+## 1.0.13
+
+### Patch Changes
+
+- ffa2250: Improve `DialogTitleEx` title/header behavior for more consistent rendering and close-action handling.
+
 ## 1.0.12
 
 ### Patch Changes
