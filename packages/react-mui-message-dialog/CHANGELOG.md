@@ -1,5 +1,11 @@
 # @jhelom/react-mui-message-dialog
 
+## 1.0.12
+
+### Patch Changes
+
+- 4575725: Fix: update `index.tsx` exports for `MessageDialogProvider`, `useMessageDialog`, `MessageDialogSettings`, `DialogTitleEx`, and `DialogTitleExProps` to ensure correct type and component exports.
+
 ## 1.0.10
 
 ### Patch Changes
