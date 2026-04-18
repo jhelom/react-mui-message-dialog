@@ -1,6 +1,6 @@
 {
   "name": "@jhelom/react-mui-message-dialog",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "main": "dist/index.es.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",

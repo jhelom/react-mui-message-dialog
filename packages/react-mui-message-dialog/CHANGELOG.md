@@ -1,5 +1,11 @@
 # @jhelom/react-mui-message-dialog
 
+## 1.0.8
+
+### Patch Changes
+
+- Improve MessageDialog reliability and accessibility: resolve pending promises on popstate/unmount/reopen, add customizable close button aria-label, support configurable title height with a 40px default, and update docs/tests.
+
 ## 1.0.7
 
 ### Patch Changes
