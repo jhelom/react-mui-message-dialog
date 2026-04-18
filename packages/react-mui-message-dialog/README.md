@@ -86,6 +86,7 @@ const messageDialogSettings = {
   confirmTitle: "Confirm",
   errorTitle: "Error",
   closeButtonAriaLabel: "Close dialog",
+  titleHeight: 40,
 } as MessageDialogSettings;
 
 createRoot(document.getElementById("root")!).render(

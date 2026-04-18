@@ -13,6 +13,7 @@ const defaultMessageDialogSettings: Required<MessageDialogSettings> = {
     confirmTitle: 'Confirm',
     errorTitle: 'Error',
     closeButtonAriaLabel: 'Close dialog',
+    titleHeight: 40,
 };
 
 export interface MessageDialogProviderProps {
@@ -133,6 +134,7 @@ export const MessageDialogProvider = (props: MessageDialogProviderProps) => {
                     <DialogTitleEx
                         title={title}
                         onClose={() => handleClose(false)}
+                        height={settings.titleHeight}
                         sx={sx}
                         closeButtonAriaLabel={settings.closeButtonAriaLabel}
                     />

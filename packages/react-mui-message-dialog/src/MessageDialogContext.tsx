@@ -19,6 +19,7 @@ export interface MessageDialogSettings {
     confirmTitle?: string;
     errorTitle?: string;
     closeButtonAriaLabel?: string;
+    titleHeight?: number;
 }
 
 
