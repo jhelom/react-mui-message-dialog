@@ -20,17 +20,18 @@ export default function DialogTitleEx(props: DialogTitleExProps) {
         };
 
     return <>
-        <DialogTitle data-testid="dialog-title" sx={sx}>
+        <DialogTitle data-testid="dialog-title" sx={{position: 'relative', ...sx}}>
             {props.title}
+            <IconButton onClick={() => handleClose()}
+                        sx={{
+                            position: 'absolute',
+                            right: 8,
+                            top: '50%',
+                            transform: 'translateY(-50%)',
+                            color: '#fff',
+                        }}>
+                <CloseIcon/>
+            </IconButton>
         </DialogTitle>
-        <IconButton onClick={() => handleClose()}
-                    sx={{
-                        position: 'absolute',
-                        right: 8,
-                        top: 12,
-                        color: '#fff',
-                    }}>
-            <CloseIcon/>
-        </IconButton>
     </>;
 }
