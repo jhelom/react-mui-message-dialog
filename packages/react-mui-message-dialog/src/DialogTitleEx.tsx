@@ -7,7 +7,7 @@ export type DialogTitleExProps = {
     onClose?: () => void;
     sx?: SxProps<Theme>;
     closeButtonAriaLabel?: string;
-    titleHeight?: number | string;
+    height?: number;
 };
 
 export default function DialogTitleEx(props: DialogTitleExProps) {
@@ -20,7 +20,7 @@ export default function DialogTitleEx(props: DialogTitleExProps) {
         color: '#fff',
         position: 'relative',
         paddingRight: 7,
-        height: props.titleHeight ?? 40,
+        height: props.height ?? 40,
         display: 'flex',
         alignItems: 'center',
         boxSizing: 'border-box',
