@@ -55,6 +55,8 @@ if (result) {
 await messageDialog.error("Error Message");
 ```
 
+If a dialog API (`alert`, `confirm`, or `error`) is called again before the current dialog is closed, the previous pending Promise is resolved with `false`, and the latest call becomes active.
+
 ## Alert
 
 ![](docs/attached/alert.jpg)
@@ -83,6 +85,7 @@ const messageDialogSettings = {
   alertTitle: "Alert",
   confirmTitle: "Confirm",
   errorTitle: "Error",
+  closeButtonAriaLabel: "Close dialog",
 } as MessageDialogSettings;
 
 createRoot(document.getElementById("root")!).render(
