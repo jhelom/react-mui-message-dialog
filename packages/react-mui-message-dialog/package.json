@@ -1,12 +1,22 @@
 {
   "name": "@jhelom/react-mui-message-dialog",
-  "version": "1.0.8",
-  "main": "dist/index.es.js",
-  "module": "dist/index.es.js",
-  "types": "dist/index.d.ts",
+  "version": "1.0.10",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "sideEffects": false,
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "build": "vite build",
@@ -50,8 +60,5 @@
     "promise",
     "message"
   ],
-  "license": "MIT",
-  "dependencies": {
-    "optional": "^0.1.4"
-  }
+  "license": "MIT"
 }
