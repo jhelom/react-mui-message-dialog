@@ -6,6 +6,7 @@ export type DialogTitleExProps = {
     title: string;
     onClose?: () => void;
     sx?: SxProps<Theme>;
+    height?: number;
 };
 
 export default function DialogTitleEx(props: DialogTitleExProps) {
@@ -22,6 +23,7 @@ export default function DialogTitleEx(props: DialogTitleExProps) {
     const baseTitleSx: SxProps<Theme> = {
         position: 'relative',
         pr: 6,
+        ...(props.height !== undefined ? {height: props.height} : {}),
     };
 
     const titleSx: SxProps<Theme> = Array.isArray(sx)
