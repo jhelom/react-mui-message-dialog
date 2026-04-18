@@ -13,18 +13,21 @@
     "merge": "git checkout develop && git pull origin develop && git pull origin main"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.29.8",
-    "@storybook/react-vite": "^8.6.15",
-    "@types/react": "^19.2.7",
+    "@changesets/cli": "^2.31.0",
+    "@storybook/react-vite": "^10.3.5",
+    "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "typescript": "^5.9.3",
-    "vite": "^5.4.21",
-    "vitest": "^1.6.1"
+    "typescript": "^6.0.3",
+    "vite": "8.0.5",
+    "vitest": "^4.1.4"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
-    "@mui/icons-material": "^7.3.6",
-    "@mui/material": "^7.3.6"
+    "@mui/icons-material": "^9.0.0",
+    "@mui/material": "^9.0.0"
+  },
+  "optionalDependencies": {
+    "@rolldown/binding-win32-x64-msvc": "1.0.0-rc.12"
   }
 }

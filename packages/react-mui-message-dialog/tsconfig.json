@@ -4,6 +4,7 @@
     "jsx": "react-jsx",
     "moduleResolution": "node",
     "esModuleInterop": true,
+    "types": ["vitest/globals"],
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
