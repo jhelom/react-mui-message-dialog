@@ -1,4 +1,4 @@
-import {DialogTitle, SxProps, Theme} from '@mui/material';
+import {Box, DialogTitle, SxProps, Theme} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 
@@ -21,7 +21,13 @@ export function DialogTitleEx(props: DialogTitleExProps) {
 
     return <>
         <DialogTitle data-testid="dialog-title" sx={{position: 'relative', ...sx}}>
-            {props.title}
+            <Box sx={{
+                position: 'absolute',
+                left: "2em",
+                top: '50%',
+                transform: 'translateY(-50%)',
+                color: '#fff',
+            }}>{props.title}</Box>
             <IconButton onClick={() => handleClose()}
                         sx={{
                             position: 'absolute',
