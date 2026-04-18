@@ -1,27 +1,16 @@
 {
   "name": "@jhelom/react-mui-message-dialog",
-  "version": "1.0.10",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs",
-      "default": "./dist/index.mjs"
-    }
-  },
-  "sideEffects": false,
+  "version": "1.0.7",
+  "main": "dist/index.es.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "README.md",
-    "LICENSE"
+    "README.md"
   ],
   "scripts": {
     "build": "vite build",
     "test": "vitest",
-    "verify:message-dialog": "tsx ./scripts/verify-message-dialog.tsx",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -30,18 +19,12 @@
     "react": ">=18"
   },
   "devDependencies": {
-    "@storybook/react-vite": "^10.3.5",
-    "@testing-library/react": "^16.3.0",
-    "@vitejs/plugin-react": "^6.0.1",
-    "jsdom": "^27.0.1",
-    "tsx": "^4.20.6",
-    "typescript": "^6.0.3",
-    "vite": "8.0.5",
+    "@storybook/react-vite": "^8.0.0",
+    "@vitejs/plugin-react": "^4.5.2",
+    "typescript": "^5.0.0",
+    "vite": "^5.0.0",
     "vite-plugin-dts": "^4.5.4",
-    "vitest": "^4.1.4"
-  },
-  "optionalDependencies": {
-    "@rolldown/binding-win32-x64-msvc": "1.0.0-rc.12"
+    "vitest": "^1.0.0"
   },
   "repository": {
     "type": "git",
