@@ -5,12 +5,16 @@ import path from 'path';
 
 export default defineConfig({
     plugins: [react(), dts()],
+    test: {
+        environment: 'jsdom',
+        globals: true,
+    },
     build: {
         lib: {
             entry: path.resolve(__dirname, 'src/index.tsx'),
             name: 'UiLib1',
-            fileName: (format) => `index.${format}.js`,
-            formats: ['es', 'cjs', 'umd'],
+            fileName: (format) => (format === 'es' ? 'index.mjs' : 'index.cjs'),
+            formats: ['es', 'cjs'],
         },
         rollupOptions: {
             external: ['react', 'react-dom', '@mui/material'],

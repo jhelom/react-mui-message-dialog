@@ -1,5 +1,23 @@
 # @jhelom/react-mui-message-dialog
 
+## 1.0.10
+
+### Patch Changes
+
+- Improve Next.js Turbopack SSR compatibility by switching library outputs to ESM/CJS only, adding conditional `exports`, and removing legacy `require` fallback pressure from package metadata.
+
+## 1.0.9
+
+### Patch Changes
+
+- Rename `DialogTitleExProps.titleHeight` to `height` and constrain it to `number`; add `MessageDialogSettings.titleHeight` and wire it to dialog title height.
+
+## 1.0.8
+
+### Patch Changes
+
+- Improve MessageDialog reliability and accessibility: resolve pending promises on popstate/unmount/reopen, add customizable close button aria-label, support configurable title height with a 40px default, and update docs/tests.
+
 ## 1.0.7
 
 ### Patch Changes

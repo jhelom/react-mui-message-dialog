@@ -1,24 +1,20 @@
-import { Button, Dialog, DialogActions, DialogContent, SxProps, Theme } from '@mui/material';
-import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
+import { Button, Dialog, DialogActions, DialogContent, DialogProps, SxProps, Theme } from '@mui/material';
+import { ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import DialogTitleEx from './DialogTitleEx';
-import { MessageDialogContext, MessageDialogOptions } from './MessageDialogContext';
+import { MessageDialogContext, MessageDialogOptions, MessageDialogSettings } from './MessageDialogContext';
 
-export interface MessageDialogSettings {
-    okText?: string;
-    cancelText?: string;
-    alertTitle?: string;
-    confirmTitle?: string;
-    errorTitle?: string;
-}
+export type { MessageDialogSettings } from './MessageDialogContext';
 
-const defaultMessageDialogSettings = {
+const defaultMessageDialogSettings: Required<MessageDialogSettings> = {
     okText: 'OK',
     cancelText: 'Cancel',
     alertTitle: 'Alert',
     confirmTitle: 'Confirm',
     errorTitle: 'Error',
-} as MessageDialogSettings;
+    closeButtonAriaLabel: 'Close dialog',
+    titleHeight: 40,
+};
 
 export interface MessageDialogProviderProps {
     children: ReactNode,
@@ -26,51 +22,66 @@ export interface MessageDialogProviderProps {
 }
 
 export const MessageDialogProvider = (props: MessageDialogProviderProps) => {
-    const settings: MessageDialogSettings = {
+    const settings = useMemo<Required<MessageDialogSettings>>(() => ({
         ...defaultMessageDialogSettings,
-        ...(props.settings || {})
-    };
+        ...(props.settings ?? {})
+    }), [props.settings]);
     const defaultSx = useMemo<SxProps<Theme>>(() => ({
         backgroundColor: theme => theme.palette.primary.main,
         color: '#fff'
     }), []);
     const [open, setOpen] = useState(false);
     const [message, setMessage] = useState<string>('');
-    const [resolvePromise, setResolvePromise] = useState<((result: boolean) => void) | null>(null);
     const [showCancelButton, setShowCancelButton] = useState<boolean>(false);
     const [sx, setSx] = useState<SxProps<Theme>>(defaultSx);
-    const [title, setTitle] = useState<string>(settings.alertTitle!);
-    const [okText, setOkText] = useState<string>(settings.okText!);
-    const [cancelText, setCancelText] = useState<string>(settings.cancelText!);
+    const [title, setTitle] = useState<string>(settings.alertTitle);
+    const [okText, setOkText] = useState<string>(settings.okText);
+    const [cancelText, setCancelText] = useState<string>(settings.cancelText);
+    const resolvePromiseRef = useRef<((result: boolean) => void) | null>(null);
 
-    const show = (message?: string): Promise<boolean> => {
-        setMessage(message || '');
+    const resolvePendingPromise = useCallback((result: boolean): void => {
+        const resolver = resolvePromiseRef.current;
+        resolvePromiseRef.current = null;
+        resolver?.(result);
+    }, []);
+
+    const handleClose = useCallback((result: boolean): void => {
+        setOpen(false);
+        resolvePendingPromise(result);
+    }, [resolvePendingPromise]);
+
+    const show = useCallback((message?: string): Promise<boolean> => {
+        if (resolvePromiseRef.current) {
+            resolvePendingPromise(false);
+        }
+
+        setMessage(message ?? '');
         setOpen(true);
         return new Promise<boolean>((resolve) => {
-            setResolvePromise(() => resolve);
+            resolvePromiseRef.current = resolve;
         });
-    };
+    }, [resolvePendingPromise]);
 
     const confirm = useCallback((message?: string, options?: MessageDialogOptions): Promise<boolean> => {
-        setTitle(settings.confirmTitle!);
-        setOkText(options?.okText || settings.okText!);
-        setCancelText(options?.cancelText || settings.cancelText!);
+        setTitle(settings.confirmTitle);
+        setOkText(options?.okText ?? settings.okText);
+        setCancelText(options?.cancelText ?? settings.cancelText);
         setShowCancelButton(true);
         setSx(defaultSx);
         return show(message);
     }, [defaultSx, settings]);
 
     const alert = useCallback((message?: string): Promise<boolean> => {
-        setTitle(settings.alertTitle!);
-        setOkText(settings.okText!);
+        setTitle(settings.alertTitle);
+        setOkText(settings.okText);
         setShowCancelButton(false);
         setSx(defaultSx);
         return show(message);
     }, [defaultSx, settings]);
 
     const error = useCallback((message?: string): Promise<boolean> => {
-        setTitle(settings.errorTitle!);
-        setOkText(settings.okText!);
+        setTitle(settings.errorTitle);
+        setOkText(settings.okText);
         setShowCancelButton(false);
         setSx({
             backgroundColor: theme => theme.palette.error.main,
@@ -79,14 +90,7 @@ export const MessageDialogProvider = (props: MessageDialogProviderProps) => {
         return show(message);
     }, [settings]);
 
-    const handleClose = (result: boolean): void => {
-        setOpen(false);
-        const resolver = resolvePromise;
-        setResolvePromise(null);
-        resolver?.(result);
-    };
-
-    const onClose = (_: object, reason: string): void => {
+    const onClose: NonNullable<DialogProps['onClose']> = (_, reason): void => {
         if (reason === 'backdropClick') {
             return;
         }
@@ -101,8 +105,8 @@ export const MessageDialogProvider = (props: MessageDialogProviderProps) => {
 
     useEffect(() => {
         const handlePopState = (_: PopStateEvent) => {
-            if (open) {
-                setOpen(false);
+            if (resolvePromiseRef.current) {
+                handleClose(false);
             }
         };
 
@@ -110,7 +114,13 @@ export const MessageDialogProvider = (props: MessageDialogProviderProps) => {
         return () => {
             window.removeEventListener('popstate', handlePopState);
         };
-    }, [open]);
+    }, [handleClose]);
+
+    useEffect(() => () => {
+        if (resolvePromiseRef.current) {
+            resolvePendingPromise(false);
+        }
+    }, [resolvePendingPromise]);
 
     return (
         <>
@@ -124,7 +134,9 @@ export const MessageDialogProvider = (props: MessageDialogProviderProps) => {
                     <DialogTitleEx
                         title={title}
                         onClose={() => handleClose(false)}
+                        height={settings.titleHeight}
                         sx={sx}
+                        closeButtonAriaLabel={settings.closeButtonAriaLabel}
                     />
                     <DialogContent
                         dividers

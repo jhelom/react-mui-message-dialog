@@ -15,8 +15,11 @@ export type MessageDialogOptions = {
 export interface MessageDialogSettings {
     okText?: string;
     cancelText?: string;
-    defaultTitle?: string;
+    alertTitle?: string;
+    confirmTitle?: string;
     errorTitle?: string;
+    closeButtonAriaLabel?: string;
+    titleHeight?: number;
 }
 
 
