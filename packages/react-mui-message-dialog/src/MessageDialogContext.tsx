@@ -12,12 +12,6 @@ export type MessageDialogOptions = {
     cancelText?: string;
 }
 
-export interface MessageDialogSettings {
-    okText?: string;
-    cancelText?: string;
-    defaultTitle?: string;
-    errorTitle?: string;
-}
 
 
 export const MessageDialogContext = createContext<MessageDialogType | null>(null);

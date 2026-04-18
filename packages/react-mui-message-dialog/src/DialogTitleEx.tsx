@@ -8,7 +8,7 @@ export type DialogTitleExProps = {
     sx?: SxProps<Theme>;
 };
 
-export default function DialogTitleEx(props: DialogTitleExProps) {
+export function DialogTitleEx(props: DialogTitleExProps) {
     const handleClose = () => {
         props.onClose?.();
     };
@@ -35,3 +35,5 @@ export default function DialogTitleEx(props: DialogTitleExProps) {
         </DialogTitle>
     </>;
 }
+
+export default DialogTitleEx;
