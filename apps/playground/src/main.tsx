@@ -11,6 +11,7 @@ const messageDialogSettings = {
     alertTitle: 'Alert',
     confirmTitle: 'Confirm',
     errorTitle: 'Error',
+    closeOnBackdropClick: true,
 } as MessageDialogSettings;
 
 createRoot(document.getElementById('root')!).render(

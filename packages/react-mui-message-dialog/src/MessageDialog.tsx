@@ -2,7 +2,12 @@ import { Button, Dialog, DialogActions, DialogContent, SxProps, Theme } from '@m
 import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 
 import DialogTitleEx from './DialogTitleEx';
-import { MessageDialogContext, MessageDialogOptions } from './MessageDialogContext';
+import {
+    MessageDialogAlertOptions,
+    MessageDialogConfirmOptions,
+    MessageDialogContext,
+    MessageDialogErrorOptions,
+} from './MessageDialogContext';
 
 export interface MessageDialogSettings {
     okText?: string;
@@ -10,7 +15,12 @@ export interface MessageDialogSettings {
     alertTitle?: string;
     confirmTitle?: string;
     errorTitle?: string;
+    closeOnBackdropClick?: boolean;
 }
+
+const resolveDialogOption = (optionValue: string | undefined, defaultValue: string): string => {
+    return optionValue ?? defaultValue;
+};
 
 const defaultMessageDialogSettings = {
     okText: 'OK',
@@ -18,6 +28,7 @@ const defaultMessageDialogSettings = {
     alertTitle: 'Alert',
     confirmTitle: 'Confirm',
     errorTitle: 'Error',
+    closeOnBackdropClick: false,
 } as MessageDialogSettings;
 
 export interface MessageDialogProviderProps {
@@ -42,6 +53,7 @@ export const MessageDialogProvider = (props: MessageDialogProviderProps) => {
     const [title, setTitle] = useState<string>(settings.alertTitle!);
     const [okText, setOkText] = useState<string>(settings.okText!);
     const [cancelText, setCancelText] = useState<string>(settings.cancelText!);
+    const [closeOnBackdropClick, setCloseOnBackdropClick] = useState<boolean>(settings.closeOnBackdropClick!);
 
     const show = (message?: string): Promise<boolean> => {
         setMessage(message || '');
@@ -51,26 +63,31 @@ export const MessageDialogProvider = (props: MessageDialogProviderProps) => {
         });
     };
 
-    const confirm = useCallback((message?: string, options?: MessageDialogOptions): Promise<boolean> => {
-        setTitle(settings.confirmTitle!);
-        setOkText(options?.okText || settings.okText!);
-        setCancelText(options?.cancelText || settings.cancelText!);
+    const confirm = useCallback((message?: string, options?: MessageDialogConfirmOptions): Promise<boolean> => {
+        setTitle(resolveDialogOption(options?.title, settings.confirmTitle!));
+        setOkText(resolveDialogOption(options?.okText, settings.okText!));
+        setCancelText(resolveDialogOption(options?.cancelText, settings.cancelText!));
+        setCloseOnBackdropClick(options?.closeOnBackdropClick ?? settings.closeOnBackdropClick!);
         setShowCancelButton(true);
         setSx(defaultSx);
         return show(message);
     }, [defaultSx, settings]);
 
-    const alert = useCallback((message?: string): Promise<boolean> => {
-        setTitle(settings.alertTitle!);
-        setOkText(settings.okText!);
+    const alert = useCallback((message?: string, options?: MessageDialogAlertOptions): Promise<boolean> => {
+        setTitle(resolveDialogOption(options?.title, settings.alertTitle!));
+        setOkText(resolveDialogOption(options?.okText, settings.okText!));
+        setCancelText(settings.cancelText!);
+        setCloseOnBackdropClick(options?.closeOnBackdropClick ?? settings.closeOnBackdropClick!);
         setShowCancelButton(false);
         setSx(defaultSx);
         return show(message);
     }, [defaultSx, settings]);
 
-    const error = useCallback((message?: string): Promise<boolean> => {
-        setTitle(settings.errorTitle!);
-        setOkText(settings.okText!);
+    const error = useCallback((message?: string, options?: MessageDialogErrorOptions): Promise<boolean> => {
+        setTitle(resolveDialogOption(options?.title, settings.errorTitle!));
+        setOkText(resolveDialogOption(options?.okText, settings.okText!));
+        setCancelText(settings.cancelText!);
+        setCloseOnBackdropClick(options?.closeOnBackdropClick ?? settings.closeOnBackdropClick!);
         setShowCancelButton(false);
         setSx({
             backgroundColor: theme => theme.palette.error.main,
@@ -87,7 +104,7 @@ export const MessageDialogProvider = (props: MessageDialogProviderProps) => {
     };
 
     const onClose = (_: object, reason: string): void => {
-        if (reason === 'backdropClick') {
+        if (reason === 'backdropClick' && !closeOnBackdropClick) {
             return;
         }
         handleClose(false);

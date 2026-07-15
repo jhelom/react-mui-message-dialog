@@ -5,11 +5,20 @@ import React from 'react';
 function App() {
     const messageDialog = useMessageDialog();
     const handleClickAlert = async () => {
-        await messageDialog.alert('The quick brown fox jumps over the lazy dog');
+        await messageDialog.alert('The quick brown fox jumps over the lazy dog', {
+            title: 'Alert (per call)',
+            okText: 'Got it',
+            closeOnBackdropClick: false,
+        });
     };
 
     const handleClickConfirm = async () => {
-        const result = await messageDialog.confirm('The quick brown fox jumps over the lazy dog');
+        const result = await messageDialog.confirm('The quick brown fox jumps over the lazy dog', {
+            title: 'Confirm (per call)',
+            okText: 'Proceed',
+            cancelText: 'Back',
+            closeOnBackdropClick: true,
+        });
         if (result) {
             console.log('Confirmed');
         } else {
@@ -18,7 +27,11 @@ function App() {
     };
 
     const handleClickError = async () => {
-        await messageDialog.error('The quick brown fox jumps over the lazy dog');
+        await messageDialog.error('The quick brown fox jumps over the lazy dog', {
+            title: 'Error (per call)',
+            okText: 'Close',
+            closeOnBackdropClick: true,
+        });
     };
 
     return <>
