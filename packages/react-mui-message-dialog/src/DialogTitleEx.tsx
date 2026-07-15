@@ -23,7 +23,7 @@ export function DialogTitleEx(props: DialogTitleExProps) {
         <DialogTitle data-testid="dialog-title" sx={{position: 'relative', ...sx}}>
             <Box sx={{
                 position: 'absolute',
-                left: "2em",
+                left: "1em",
                 top: '50%',
                 transform: 'translateY(-50%)',
             }}>{props.title}</Box>
