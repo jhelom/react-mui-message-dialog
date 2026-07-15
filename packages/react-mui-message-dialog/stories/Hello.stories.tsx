@@ -1,12 +1,24 @@
 import type {Meta, StoryObj} from '@storybook/react';
-import {Hello1} from '../src';
+import {DialogTitleEx} from '../src';
 
-const meta: Meta<typeof Hello> = {
-    title: 'ui-lib-1/Hello',
-    component: Hello,
-};
+const meta = {
+    title: 'components/DialogTitleEx',
+    component: DialogTitleEx,
+    args: {
+        title: 'Sample dialog title',
+    },
+} satisfies Meta<typeof DialogTitleEx>;
+
 export default meta;
 
-type Story = StoryObj<typeof Hello>;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
+
+export const Closable: Story = {
+    args: {
+        title: 'Closable dialog title',
+        onClose: () => undefined,
+    },
+};
+
