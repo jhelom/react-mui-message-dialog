@@ -76,15 +76,15 @@ If a dialog API (`alert`, `confirm`, or `error`) is called again before the curr
 
 ## Alert
 
-![](docs/attached/alert.jpg)
+![](https://raw.githubusercontent.com/jhelom/react-mui-message-dialog/main/docs/attached/alert.jpg)
 
 ## Confirm
 
-![](docs/attached/confirm.jpg)
+![](https://raw.githubusercontent.com/jhelom/react-mui-message-dialog/main/docs/attached/confirm.jpg)
 
 ## Error
 
-![](docs/attached/error.jpg)
+![](https://raw.githubusercontent.com/jhelom/react-mui-message-dialog/main/docs/attached/error.jpg)
 
 # Localize Text
 

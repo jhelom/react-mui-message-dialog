@@ -1,15 +1,27 @@
 {
   "name": "@jhelom/react-mui-message-dialog",
-  "version": "1.0.11",
-  "main": "dist/index.es.js",
-  "module": "dist/index.es.js",
-  "types": "dist/index.d.ts",
+  "version": "1.0.14",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js",
+      "default": "./dist/index.es.js"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
   ],
   "scripts": {
     "build": "vite build",
+    "prepack": "pnpm run build",
     "test": "vitest",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
@@ -32,7 +44,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jhelom/react-mui-message-dialog.git"
+    "url": "git+https://github.com/jhelom/react-mui-message-dialog.git",
+    "directory": "packages/react-mui-message-dialog"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "bugs": {
     "url": "https://github.com/jhelom/react-mui-message-dialog/issues"

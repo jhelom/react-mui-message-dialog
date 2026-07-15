@@ -1,5 +1,12 @@
 # @jhelom/react-mui-message-dialog
 
+## 1.0.14
+
+### Patch Changes
+
+- Add `closeOnBackdropClick` setting and per-call dialog options (`title`, `okText`, `closeOnBackdropClick`) for `alert` / `error`, plus `cancelText` override for `confirm`.
+- Refine package publish metadata (`exports`, CJS/ESM entrypoints, `prepack`, bundled `LICENSE` / `CHANGELOG.md`) for safer npm distribution.
+
 ## 1.0.10
 
 ### Patch Changes
