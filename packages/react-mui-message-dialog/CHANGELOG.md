@@ -1,5 +1,25 @@
 # @jhelom/react-mui-message-dialog
 
+## 1.0.17
+
+### Patch Changes
+
+- Fix ESM bundling for Next.js Turbopack by externalizing `react/*` and `react-dom/*` subpath imports, preventing dynamic `require` runtime stubs from being emitted in `dist/index.es.js`.
+
+## 1.0.16
+
+### Patch Changes
+
+- Restore `package.json` `main` to `./dist/index.es.js` to keep the package root aligned with the ESM entry.
+
+## 1.0.15
+
+### Patch Changes
+
+- Export `MessageDialogType` from the public package entry so consumers can use it without deep imports blocked by `exports`.
+- Document the `MessageDialogType` type-only import in the README.
+- Externalize `@mui/material/*` and `@mui/icons-material/*` subpaths during library bundling for safer npm publishing.
+
 ## 1.0.14
 
 ### Patch Changes

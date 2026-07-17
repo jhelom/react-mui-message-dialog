@@ -13,12 +13,25 @@ export default defineConfig({
             formats: ['es', 'cjs', 'umd'],
         },
         rollupOptions: {
-            external: ['react', 'react-dom', '@mui/material'],
+            external: (id) =>
+                id === 'react' ||
+                id.startsWith('react/') ||
+                id === 'react-dom' ||
+                id.startsWith('react-dom/') ||
+                id === '@mui/material' ||
+                id.startsWith('@mui/material/') ||
+                id === '@mui/icons-material' ||
+                id.startsWith('@mui/icons-material/'),
             output: {
                 globals: {
                     react: 'React',
+                    'react/jsx-runtime': 'react_jsx_runtime',
+                    'react/jsx-dev-runtime': 'react_jsx_dev_runtime',
                     'react-dom': 'ReactDOM',
                     '@mui/material': 'MaterialUI',
+                    '@mui/icons-material': 'MaterialIcons',
+                    '@mui/material/IconButton': 'MaterialUIIconButton',
+                    '@mui/icons-material/Close': 'MaterialUICloseIcon',
                 },
             },
         },

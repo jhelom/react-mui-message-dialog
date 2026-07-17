@@ -72,6 +72,16 @@ await messageDialog.error("Error Message", {
 });
 ```
 
+If you want to type a message dialog object explicitly, import `MessageDialogType` from the package root as a type-only import.
+
+```tsx
+import type { MessageDialogType } from "@jhelom/react-mui-message-dialog";
+
+function runWorkflow(messageDialog: MessageDialogType) {
+  return messageDialog.confirm("Continue?");
+}
+```
+
 If a dialog API (`alert`, `confirm`, or `error`) is called again before the current dialog is closed, the previous pending Promise is resolved with `false`, and the latest call becomes active.
 
 ## Alert
